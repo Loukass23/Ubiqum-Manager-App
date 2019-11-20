@@ -18,7 +18,7 @@ import { createStyles, withStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core'
 import SignIn from './SignIn';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -38,7 +38,11 @@ const styles = (theme: Theme) => createStyles({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        textAlign: 'center'
+    },
 
 })
 
@@ -60,9 +64,12 @@ const NavBar: React.FC<Props> = ({ classes }) => {
     };
 
     const drawer = (
-        <React.Fragment>
-            {/* <div className={classes.toolbar} /> */}
-            <h4>Ubiqum Manager</h4>
+        <div  >
+
+            <Typography className={classes.toolbar} variant="h5" color="primary">Ubiqum Manager</Typography>
+
+            <Divider />
+
             <List>
 
                 <ListItem button >
@@ -81,7 +88,7 @@ const NavBar: React.FC<Props> = ({ classes }) => {
             </List>
             <Divider />
             <SignIn />
-        </React.Fragment>
+        </div>
     );
 
     return (
