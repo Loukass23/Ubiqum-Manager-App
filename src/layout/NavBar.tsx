@@ -10,13 +10,16 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import DescriptionIcon from '@material-ui/icons/Description';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core'
 import SignIn from './SignIn';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 300;
 
@@ -26,6 +29,7 @@ const styles = (theme: Theme) => createStyles({
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
+
     },
     drawer: {
         width: drawerWidth,
@@ -65,20 +69,28 @@ const NavBar: React.FC<Props> = ({ classes }) => {
 
     const drawer = (
         <div  >
-
-            <Typography className={classes.toolbar} variant="h5" color="primary">Ubiqum Manager</Typography>
-
+            <ListItem button component={Link} to="/">
+                <ListItemIcon>
+                    <HomeIcon color="primary" />
+                </ListItemIcon>
+                <Typography className={classes.toolbar} variant="h5" color="primary">Ubiqum Manager</Typography>
+            </ListItem>
             <Divider />
 
             <List>
-
+                <ListItem button >
+                    <ListItemIcon>
+                        <DescriptionIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Ressources" />
+                </ListItem>
                 <ListItem button >
                     <ListItemIcon>
                         <CalendarTodayIcon />
                     </ListItemIcon>
                     <ListItemText primary="Calendar" />
                 </ListItem>
-                <ListItem button >
+                <ListItem button component={Link} to="/appointments"  >
                     <ListItemIcon>
                         <PeopleAltIcon />
                     </ListItemIcon>

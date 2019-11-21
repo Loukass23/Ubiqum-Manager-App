@@ -15,11 +15,11 @@ import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles(theme => ({
-    '@global': {
-        body: {
-            backgroundColor: theme.palette.common.white,
-        },
-    },
+    // '@global': {
+    //     body: {
+    //         backgroundColor: theme.palette.common.white,
+    //     },
+    // },
     paper: {
         marginTop: theme.spacing(2),
         display: 'flex',

@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
-import logo from './assets/ubiqum-manager-logo-nobg.png'
 import './App.css';
 import NavBar from './layout/NavBar';
 import ThemeContextProvider, { ThemeContext } from './context/ThemeContext';
-import { MuiThemeProvider } from '@material-ui/core';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { MuiThemeProvider, Container } from '@material-ui/core';
+import { MemoryRouter, Route } from 'react-router';
+import Appointments from './screens/Appointments';
+import Landing from './screens/Landing';
 
-const spinningLogo = (<header className="App-header">
-  <div className="zoom">
-    <img src={logo} className="App-logo" alt="logo" />
-  </div>
-  <h1>Ubiqum Manager</h1>
-</header>)
+
+
 
 const RenderWebsite: React.FC = () => {
   const {
@@ -19,20 +18,29 @@ const RenderWebsite: React.FC = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
+
       <NavBar />
-      {spinningLogo}
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route exact path='/appointments' component={Appointments} />
+      </Switch>
+
     </MuiThemeProvider>)
 }
-
 
 const App: React.FC = () => {
 
   return (
-    <div className="App">
-      <ThemeContextProvider>
-        <RenderWebsite />
-      </ThemeContextProvider>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <ThemeContextProvider>
+          <RenderWebsite />
+        </ThemeContextProvider>
+
+      </div>
+    </BrowserRouter>
+
+
   );
 }
 

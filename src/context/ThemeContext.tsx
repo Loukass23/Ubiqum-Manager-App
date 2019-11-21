@@ -32,6 +32,9 @@ let initTheme = createMuiTheme({
             main: '#566579',
             // dark: will be calculated from palette.secondary.main,
         },
+        background: {
+            default: '#282c34'
+        },
         text: {
             // primary: '#3a3535',
             // secondary: '#3a3535'

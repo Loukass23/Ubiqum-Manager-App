@@ -12,8 +12,9 @@ function createWindow() {
         width: 900, height: 680,
         icon: __dirname + '/favicon.ico',
         title: "Ubiqum Manager",
-        frame: false
+        frame: true
     });
+    console.log('mainWindow :', mainWindow);
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     if (isDev) {
         // Open the DevTools.
