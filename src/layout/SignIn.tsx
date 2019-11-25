@@ -11,15 +11,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Paper } from '@material-ui/core';
 
 
 
 const useStyles = makeStyles(theme => ({
-    // '@global': {
-    //     body: {
-    //         backgroundColor: theme.palette.common.white,
-    //     },
-    // },
+    toolbar: theme.mixins.toolbar,
+    root: {
+        marginTop: theme.spacing(3),
+
+    },
+
     paper: {
         marginTop: theme.spacing(2),
         display: 'flex',
@@ -41,10 +43,12 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn: React.FC = () => {
     const classes = useStyles();
+    console.log('signIn');
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <Container className={classes.root}>
+            <div className={classes.toolbar} />
+
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
@@ -98,7 +102,6 @@ const SignIn: React.FC = () => {
                     </Grid>
                 </form>
             </div>
-
         </Container>
     );
 }

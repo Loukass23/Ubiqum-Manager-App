@@ -1,35 +1,34 @@
 import React, { useState, createContext } from 'react'
 
 
-const initStudent: Student = {
+const initUser: Mentor = {
     name: 'Lucas',
     surname: 'DPS',
     email: '',
     avatar: 'https://res.cloudinary.com/ds3w3iwbk/image/upload/v1560349630/MERN/20170409_193026.jpg',
     program: '',
     city: '',
-    startDate: new Date(),
-    jobCenter: false
+    calendly: ''
 }
+
+
+
 const initAuth: AuthContextInterface = {
-    isAuthenticated: false,
-    student: initStudent
+    isAuthenticated: true,
+    user: initUser,
+    userType: 'mentor'
 }
 export const AuthContext = createContext<AuthContextInterface>(initAuth);
 
 const AuthContextProvider = (props: { children: React.ReactNode; }) => {
-    const [auth, setAuth] = useState({
-        isAuthenticated: true,
-        student: initStudent
-    })
 
-    const setUserAuth = (student: Student) => {
-        setAuth({
-            isAuthenticated: true,
-            student
-        })
+    const [user, setUser] = useState<User>(initUser)
+
+    const [auth, setAuth] = useState(initAuth)
+
+    const setUserAuth = (user: User) => {
+        setUser(user)
     }
-
 
     return (
         <AuthContext.Provider value={auth}>

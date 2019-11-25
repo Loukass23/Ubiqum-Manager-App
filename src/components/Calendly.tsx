@@ -1,7 +1,13 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { Typography } from "@material-ui/core";
 
-class Calendly extends React.Component {
-    componentDidMount() {
+interface Props {
+    mentors: Mentors
+}
+
+const Calendly: React.FC<Props> = ({ mentors }) => {
+
+    useEffect(() => {
 
         const head = document.querySelector('head');
         if (head) {
@@ -9,32 +15,31 @@ class Calendly extends React.Component {
             script.setAttribute('src', 'https://assets.calendly.com/assets/external/widget.js');
             head.appendChild(script);
         }
+    }, []);
 
-    }
+    return (
 
-    componentWillUnmount() {
-        // whatever you need to cleanup the widgets code
-    }
+        <div id="schedule_form">
+            {
+                mentors.map((mentor: Mentor) => (
 
-    render() {
-        return (
-            <div>
-                <div id="schedule_form">
 
-                    <div
+                    <div key={mentor.email}
                         className="calendly-inline-widget"
-                        data-url="https://calendly.com/lucas-ubiqum/berlin"
+                        data-url={mentor.calendly}
                         style={{ minWidth: '320px', height: '580px' }} />
-                </div>
-                <div
-                    className="calendly-inline-widget"
-                    data-url="https://calendly.com/ottavia-ubiqum/berlin"
-                    style={{ minWidth: '320px', height: '580px' }} />
 
-            </div>
-        );
-    }
+
+                ))
+
+            }
+
+        </div>
+
+
+    );
 }
+
 
 export default Calendly
 

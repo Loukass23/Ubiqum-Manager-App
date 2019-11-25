@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -9,9 +9,11 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ListItemText from '@material-ui/core/ListItemText';
 import DescriptionIcon from '@material-ui/icons/Description';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import SettingsIcon from '@material-ui/icons/Settings';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,6 +22,7 @@ import { createStyles, withStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core'
 import SignIn from './SignIn';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const drawerWidth = 300;
 
@@ -61,6 +64,12 @@ interface Props {
 
 const NavBar: React.FC<Props> = ({ classes }) => {
 
+    const {
+        user, userType
+    } = useContext(AuthContext)
+
+    console.log('user :', user);
+    console.log('userType :', userType);
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
@@ -92,9 +101,27 @@ const NavBar: React.FC<Props> = ({ classes }) => {
                 </ListItem>
                 <ListItem button component={Link} to="/appointments"  >
                     <ListItemIcon>
-                        <PeopleAltIcon />
+                        <EmojiPeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Appointments" />
+                </ListItem>
+                {userType !== 'student' && <ListItem button component={Link} to="/students"  >
+                    <ListItemIcon>
+                        <PeopleAltIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Students" />
+                </ListItem>}
+                <ListItem button component={Link} to="/settings"  >
+                    <ListItemIcon>
+                        <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Settings" />
+                </ListItem>
+                <ListItem button component={Link} to="/signin"  >
+                    <ListItemIcon>
+                        <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Sign In" />
                 </ListItem>
 
             </List>
