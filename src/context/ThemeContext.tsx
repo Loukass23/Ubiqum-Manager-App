@@ -1,8 +1,26 @@
 import React, { useState, createContext } from 'react'
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, StyleRules } from "@material-ui/core/styles";
 
+type Overrides = {
+    [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
+};
 const defaultTheme = createMuiTheme({})
 const { breakpoints } = defaultTheme
+const test = defaultTheme.overrides
+console.log('test', defaultTheme)
+
+const overrides: Overrides = {
+    MUIDataTableFilter: {
+        root: {
+
+            backgroundColor: "#FFFFFF"
+        }
+    },
+    MUIDataTableBodyCell: {
+
+    }
+}
+
 let initTheme = createMuiTheme({
     ...defaultTheme,
     typography: {
@@ -40,8 +58,11 @@ let initTheme = createMuiTheme({
             // secondary: '#3a3535'
         }
     },
+    overrides: overrides
 
 });
+
+
 
 export const ThemeContext = createContext<ThemeContextInterface>({
     theme: initTheme,

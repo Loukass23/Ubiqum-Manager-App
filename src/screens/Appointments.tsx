@@ -10,13 +10,20 @@ const styles = (theme: Theme) => createStyles({
     toolbar: theme.mixins.toolbar,
     root: {
         marginTop: theme.spacing(3),
+        [theme.breakpoints.down("md")]: {
+            paddingRight: 0,
+            paddingLeft: 0
+        },
+
     },
     paper: {
-        // [breakpoints.down("md")]: {
-        //     width: "100cw"
-        // },
+
         minHeight: '100vh',
         paddingBottom: theme.spacing(3),
+        [theme.breakpoints.down("md")]: {
+            marginRight: 0,
+            marginLeft: 0
+        },
     },
     title: {
         marginTop: theme.spacing(3),

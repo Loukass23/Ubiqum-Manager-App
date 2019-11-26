@@ -1,7 +1,9 @@
-import MUIDataTable, { MUIDataTableColumnDef, MUIDataTableColumn, MUIDataTableColumnOptions, MUIDataTableOptions } from "mui-datatables";
+import MUIDataTable, { MUIDataTableColumnDef, MUIDataTableColumn, MUIDataTableOptions } from "mui-datatables";
 import React from 'react';
 
-import { Container, Theme, createStyles, withStyles } from "@material-ui/core";
+
+
+import { Theme, createStyles, withStyles, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -15,6 +17,18 @@ const styles = (theme: Theme) => createStyles({
 
 
 })
+
+// const getMuiTheme = (theme: Theme) => createMuiTheme({
+//     ...theme,
+//     overrides: {
+//         MUIDataTableBodyCell: {
+//             root: {
+//                 backgroundColor: "#FF0000"
+//             }
+//         }
+//     }
+// })
+
 const extractColumns = (data: Array<Object>) => {
     const dataItem = data[0]
 
@@ -82,12 +96,14 @@ const TableRender: React.FC<Props> = ({ data, classes, title }) => {
     return (
         <React.Fragment>
             <div className={classes.toolbar} />
+            {/* <MuiThemeProvider theme={getMuiTheme()}> */}
             <MUIDataTable
                 title={title}
                 data={data}
                 columns={columns}
                 options={option}
             />
+            {/* </MuiThemeProvider> */}
         </React.Fragment>
     )
 }
