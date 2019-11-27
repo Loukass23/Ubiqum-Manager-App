@@ -12,6 +12,9 @@ import UbiqumContextProvider from './context/UbiqumContext';
 import AuthContextProvider, { AuthContext } from './context/AuthContext';
 import Students from './screens/Students';
 import SignIn from './layout/SignIn';
+import SpinningLogo from './components/SpinningLogo';
+import UserProfile from './components/UserProfile';
+import Profile from './screens/Profile';
 
 
 
@@ -29,15 +32,21 @@ const RenderWebsite: React.FC = () => {
       <NavBar />
       <Switch>
         <Route exact path='/' component={Landing} />
+        <Route exact path='/settings' component={Settings} />
+        <Route path="/profile/:id" exact component={Profile} />
+
         {isAuthenticated ?
           <React.Fragment>
+
             <Route path="/appointments" exact component={Appointments} />
-            {userType !== 'student' &&
+
+            {userType !== 'student' ?
               <UbiqumContextProvider>
                 <Route path="/students" exact component={Students} />
-              </UbiqumContextProvider>
-
+              </UbiqumContextProvider> :
+              <SpinningLogo msg="Staff Only!" />
             }
+
 
           </React.Fragment>
           :
@@ -46,8 +55,7 @@ const RenderWebsite: React.FC = () => {
 
 
 
-        <Route exact path='/settings' component={Settings} />
-        <Route exact path='/signin' component={SignIn} />
+        {/* <Route exact path='/signin' component={SignIn} /> */}
       </Switch>
 
     </MuiThemeProvider>)

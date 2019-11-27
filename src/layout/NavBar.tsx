@@ -23,6 +23,7 @@ import { Theme } from '@material-ui/core'
 import SignIn from './SignIn';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import AuthToolbar from './AuthToolbar';
 
 const drawerWidth = 300;
 
@@ -33,6 +34,10 @@ const styles = (theme: Theme) => createStyles({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
 
+    },
+    Tbar: {
+        display: 'flex',
+        justifyContent: 'space-between'
     },
     drawer: {
         width: drawerWidth,
@@ -68,8 +73,7 @@ const NavBar: React.FC<Props> = ({ classes }) => {
         user, userType
     } = useContext(AuthContext)
 
-    console.log('user :', user);
-    console.log('userType :', userType);
+
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
@@ -117,12 +121,12 @@ const NavBar: React.FC<Props> = ({ classes }) => {
                     </ListItemIcon>
                     <ListItemText primary="Settings" />
                 </ListItem>
-                <ListItem button component={Link} to="/signin"  >
+                {/* <ListItem button component={Link} to="/signin"  >
                     <ListItemIcon>
                         <SettingsIcon />
                     </ListItemIcon>
                     <ListItemText primary="Sign In" />
-                </ListItem>
+                </ListItem> */}
 
             </List>
             <Divider />
@@ -134,7 +138,7 @@ const NavBar: React.FC<Props> = ({ classes }) => {
         <div className={classes.root}>
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
+                <Toolbar className={classes.Tbar}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -145,7 +149,9 @@ const NavBar: React.FC<Props> = ({ classes }) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Ubiqum Manager          </Typography>
+                        Ubiqum Manager
+                          </Typography>
+                    <AuthToolbar />
                 </Toolbar>
             </AppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">

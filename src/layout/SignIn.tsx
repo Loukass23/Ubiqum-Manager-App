@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn: React.FC = () => {
     const classes = useStyles();
-    console.log('signIn');
+
 
     return (
         <Container className={classes.root}>

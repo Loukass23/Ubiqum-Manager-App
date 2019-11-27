@@ -9,6 +9,8 @@ import { Grid, Paper, Button } from '@material-ui/core';
 import { minHeight, breakpoints } from '@material-ui/system';
 import { AuthContext } from '../context/AuthContext';
 import UserProfile from '../components/UserProfile';
+import { useParams } from 'react-router-dom';
+import { UbiqumContext } from '../context/UbiqumContext';
 
 
 const styles = (theme: Theme) => createStyles({
@@ -42,18 +44,25 @@ interface Props {
     classes: any
 }
 
-const Settings: React.FC<Props> = ({ classes }) => {
+const Profile: React.FC<Props> = ({ classes }) => {
     const { user, userType } = useContext(AuthContext)
-    console.log('user :', user);
+    const { allUsers } = useContext(UbiqumContext)
+
+    const { id } = useParams()
+
+    const found: User = allUsers.filter((u: User) => u.id == id)[0]
+    // const found: User = allUsers.find((u: User) => u.id == id)
+
+    console.log('found', typeof (found))
     return (
         <Container className={classes.root}>
             <Paper className={classes.paper}>
                 <div className={classes.toolbar} />
 
                 <Typography className={classes.title} color="secondary" component="h1" variant="h3">
-                    Settings
+                    Profile
         </Typography>
-                {/* <UserProfile user={user} userType={userType} /> */}
+                <UserProfile user={found} userType={userType} />
 
 
             </Paper>
@@ -61,4 +70,4 @@ const Settings: React.FC<Props> = ({ classes }) => {
     );
 }
 
-export default withStyles(styles)(Settings)
+export default withStyles(styles)(Profile)

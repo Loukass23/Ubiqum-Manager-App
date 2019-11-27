@@ -1,9 +1,7 @@
 import MUIDataTable, { MUIDataTableColumnDef, MUIDataTableColumn, MUIDataTableOptions } from "mui-datatables";
 import React from 'react';
-
-
-
-import { Theme, createStyles, withStyles, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { Theme, createStyles, withStyles } from "@material-ui/core";
+import CustomToolbarSelect from "./CustomToolbarSelect";
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -14,20 +12,8 @@ const styles = (theme: Theme) => createStyles({
     paper: {
         color: theme.palette.secondary.light
     }
-
-
 })
 
-// const getMuiTheme = (theme: Theme) => createMuiTheme({
-//     ...theme,
-//     overrides: {
-//         MUIDataTableBodyCell: {
-//             root: {
-//                 backgroundColor: "#FF0000"
-//             }
-//         }
-//     }
-// })
 
 const extractColumns = (data: Array<Object>) => {
     const dataItem = data[0]
@@ -80,9 +66,26 @@ const getOptions = (title: string) => {
             }
 
         },
+        fixedHeaderOptions: {
+            xAxis: false,
+            yAxis: true
+        },
+        customToolbarSelect: renderCustomToolbar,
+        onRowsDelete: onClick
     };
 }
+const renderCustomToolbar: any = (selectedRows: { data: { index: number; dataIndex: number; }[]; lookup: { [key: number]: boolean; }; },
+    displayData: { data: any[]; dataIndex: number; }[],
+    setSelectedRows: (rows: number[]) => void) =>
 
+    (
+        <CustomToolbarSelect selectedRows={selectedRows} displayData={displayData} setSelectedRows={setSelectedRows} />
+    )
+
+const onClick = (rowsDeleted: any[]) => {
+    console.log('test ', rowsDeleted);
+    return false
+}
 interface Props {
     data: Array<Object>,
     classes: any,
@@ -93,17 +96,17 @@ const TableRender: React.FC<Props> = ({ data, classes, title }) => {
     const option: MUIDataTableOptions = getOptions(title)
     const columns: MUIDataTableColumnDef[] = extractColumns(data)
 
+    // function(rowsDeleted: object(lookup: { [dataIndex]: boolean }, data: arrayOfObjects: { index: number, dataIndex: number })) => void OR false
+
     return (
         <React.Fragment>
             <div className={classes.toolbar} />
-            {/* <MuiThemeProvider theme={getMuiTheme()}> */}
             <MUIDataTable
                 title={title}
                 data={data}
                 columns={columns}
                 options={option}
             />
-            {/* </MuiThemeProvider> */}
         </React.Fragment>
     )
 }

@@ -5,30 +5,41 @@ import { studentsOffline } from '../studentsOffline'
 
 const initStudents: Students = studentsOffline
 
+
 const initMentors: Mentors = [
     {
+        id: 'BE-JA-LU-MEN',
         name: "Lucas",
         avatar: "",
         surname: "Dupias",
         program: "Full-Stack",
         city: "Berlin",
         email: "lucas@ubiqum.com",
-        calendly: "https://calendly.com/lucas-ubiqum/berlin"
+        calendly: "https://calendly.com/lucas-ubiqum/berlin",
+        startDate: "5/6/2019",
     },
     {
+        id: 'BE-JA-OT-MEN',
         name: "Ottavia",
         avatar: "",
         surname: "Feletig",
         program: "Full-Stack",
         city: "Berlin",
         email: "ottavia@ubiqum.com",
-        calendly: "https://calendly.com/ottavia-ubiqum/berlin"
+        calendly: "https://calendly.com/ottavia-ubiqum/berlin",
+        startDate: "3/6/2019",
     }
 ]
 
+const initAllUsers: Array<User> = []
+initMentors.forEach(m => initAllUsers.push(m))
+initStudents.forEach(m => initAllUsers.push(m))
+
+
 const initUbiqum: UbiqumContextInterface = {
     mentors: initMentors,
-    students: initStudents
+    students: initStudents,
+    allUsers: initAllUsers
 }
 export const UbiqumContext = createContext<UbiqumContextInterface>(initUbiqum);
 

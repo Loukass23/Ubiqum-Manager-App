@@ -1,18 +1,19 @@
 import React, { useState, createContext } from 'react'
 import { createMuiTheme, StyleRules } from "@material-ui/core/styles";
 
-type Overrides = {
-    [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
-};
+
 const defaultTheme = createMuiTheme({})
 const { breakpoints } = defaultTheme
-const test = defaultTheme.overrides
-console.log('test', defaultTheme)
 
 const overrides: Overrides = {
     MUIDataTableFilter: {
         root: {
 
+            backgroundColor: "#FFFFFF"
+        }
+    },
+    MUIDataTableToolbarSelect: {
+        root: {
             backgroundColor: "#FFFFFF"
         }
     },
@@ -23,7 +24,20 @@ const overrides: Overrides = {
 
 let initTheme = createMuiTheme({
     ...defaultTheme,
+
     typography: {
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+
+            'Roboto',
+            '"Helvetica Neue"',
+
+
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
         subtitle1: {
             fontSize: 12,
         },

@@ -8,15 +8,13 @@ import { withStyles } from '@material-ui/styles';
 const styles = (theme: Theme) => createStyles({
     toolbar: theme.mixins.toolbar,
     root: {
-        // marginTop: theme.spacing(3),
+
         [theme.breakpoints.down("xl")]: {
             paddingRight: 0,
             paddingLeft: 0
         },
-
     },
     paper: {
-
         minHeight: '100vh',
         paddingBottom: theme.spacing(3),
         [theme.breakpoints.down("md")]: {

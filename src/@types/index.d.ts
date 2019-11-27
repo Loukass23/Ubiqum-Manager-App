@@ -2,8 +2,9 @@
  * User Management
  */
 interface Student {
+    id: string,
     name: string,
-    surname?: string,
+    surname: string,
     email: string,
     avatar?: string,
     program: string,
@@ -13,8 +14,13 @@ interface Student {
     endDate?: Date,
     jobCenter?: any,
     progress: Progress
-    gitHub?: string
+    gitHub?: string,
+    alumni?: boolean,
+    about?: string,
+    calendly?: string,
+
 }
+
 interface Progress {
     module: any,
     sprint: any,
@@ -24,18 +30,24 @@ interface Progress {
 type Students = Array<Student>
 
 interface Mentor {
+    id: string,
     name: string,
+    startDate: date,
     surname: string,
+    cohort?: string,
     avatar: string,
     program: string,
     city: string,
     email: string,
-    calendly: string
+    calendly: string,
+    about?: string
 }
 
 type Mentors = Array<Mentor>
 
 type User = Student | Mentor
+
+type Users = Array<User>
 
 
 /**
@@ -50,7 +62,8 @@ interface AuthContextInterface {
 }
 interface UbiqumContextInterface {
     mentors: Mentors,
-    students: Students
+    students: Students,
+    allUsers: Users
 }
 
 interface ThemeContextInterface {
@@ -58,9 +71,17 @@ interface ThemeContextInterface {
     setColors: any
 }
 
+/**
+ * MUI Overides bug workaroung
+ */
 
+
+type Overrides = {
+    [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
+};
 
 interface ComponentNameToClassKey {
+    MUIDataTableToolbarSelect: any,
     MUIDataTableFilter: any,
     MUIDataTableBodyCell: any,
     MuiAppBar: AppBarClassKey;
