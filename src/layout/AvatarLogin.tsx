@@ -6,17 +6,20 @@ const styles = (theme: Theme) => createStyles({
 
 
     bigAvatar: {
+        marginRight: theme.spacing(2),
         // width: '20vw',
         // height: '20vw',
         // margin: 'auto',
 
     },
     initials: {
+        marginRight: theme.spacing(2),
+
         // width: '20vw',
         // height: '20vw',
         // margin: 'auto',
         // fontSize: '8vw',
-        olor: theme.palette.primary.light,
+        backgroundColor: theme.palette.background.paper,
         color: theme.palette.secondary.main,
         textAlign: 'center'
     },

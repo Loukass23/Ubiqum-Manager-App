@@ -3,7 +3,7 @@ import { UbiqumContext } from '../context/UbiqumContext';
 import TableRender from '../components/TableRender';
 import { Theme, createStyles, Container } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
-import { extractFilterProfiles } from '../config/columsFiltersProfiles'
+import { extractFilterProfiles, extractAllColumns } from '../config/columsFiltersProfiles'
 import { AuthContext } from '../context/AuthContext';
 import { MUIDataTableColumn } from 'mui-datatables';
 
@@ -35,24 +35,24 @@ interface Props {
     classes: any
 }
 
-const Students: React.FC<Props> = ({ classes }) => {
+const Allumni: React.FC<Props> = ({ classes }) => {
 
 
     const {
-        students,
+        allumni,
     } = useContext(UbiqumContext)
     const {
         userType, user
     } = useContext(AuthContext)
 
-    const columns: MUIDataTableColumn[] = extractFilterProfiles(userType, user)
+    const columns: MUIDataTableColumn[] = extractAllColumns(allumni)
 
 
     return (
         <Container className={classes.root}>
-            <TableRender data={students} columns={columns} title='Ubiqum Students List' />
+            <TableRender data={allumni} columns={columns} title='Ubiqum Allumni List' />
 
         </Container>
     )
 }
-export default withStyles(styles)(Students) 
+export default withStyles(styles)(Allumni) 

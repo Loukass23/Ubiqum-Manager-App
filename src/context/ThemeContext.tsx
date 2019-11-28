@@ -12,14 +12,41 @@ const overrides: Overrides = {
             backgroundColor: "#FFFFFF"
         }
     },
+
+    MUIDataTable: {
+        responsiveScroll: {
+            maxHeight: 'unset',
+            overflowX: 'unset',
+            overflowY: 'unset',
+        },
+    },
     MUIDataTableToolbarSelect: {
         root: {
-            backgroundColor: "#FFFFFF"
-        }
+            top: 64,
+            position: 'sticky',
+            background: '#d8d8d8',
+            zIndex: '999',
+            backgroundColor: "#d8d8d8"
+        },
+    },
+    MUIDataTableToolbar: {
+        root: {
+            top: 64,
+            position: 'sticky',
+            background: '#d8d8d8',
+            zIndex: '999',
+            // backgroundColor: "secondary"
+        },
+    },
+    MUIDataTableHeadCell: {
+        fixedHeader: {
+            top: '62px',
+        },
     },
     MUIDataTableBodyCell: {
 
     }
+
 }
 
 let initTheme = createMuiTheme({

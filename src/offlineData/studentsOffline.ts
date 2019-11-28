@@ -1618,5 +1618,23 @@ export const studentsOffline: Students = [
         "gitHub": "",
         "id": "MA-ME-TA-9.2019",
         "surname": ""
+    },
+    {
+        id: 'BE-JA-LU-11-2018',
+        name: 'Lucas',
+        surname: 'DPS',
+        email: 'lucas@ubiqum.com',
+        avatar: 'https://res.cloudinary.com/ds3w3iwbk/image/upload/v1560349630/MERN/20170409_193026.jpg',
+        program: 'Full-Stack',
+        city: 'Berlin',
+        cohort: "106",
+        startDate: "9/9/2019",
+        progress: {
+            module: "3",
+            sprint: "3",
+            day: "2",
+            refDay: "42"
+        },
+        about: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus odit rerum accusamus ducimus, earum quam perspiciatis exercitationem doloremque pariatur nobis! Modi, eos facilis. Suscipit vero quam hic reprehenderit repellendus laborum.'
     }
 ]

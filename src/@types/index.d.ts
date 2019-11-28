@@ -17,7 +17,7 @@ interface Student {
     gitHub?: string,
     alumni?: boolean,
     about?: string,
-    calendly?: string,
+    // calendly?: string,
 
 }
 
@@ -34,13 +34,14 @@ interface Mentor {
     name: string,
     startDate: date,
     surname: string,
-    cohort?: string,
+    // cohort?: string,
     avatar: string,
     program: string,
     city: string,
     email: string,
     calendly: string,
-    about?: string
+    about?: string,
+    alumni?: boolean,
 }
 
 type Mentors = Array<Mentor>
@@ -48,6 +49,21 @@ type Mentors = Array<Mentor>
 type User = Student | Mentor
 
 type Users = Array<User>
+
+interface Allumnus {
+    name?: string,
+    dob?: string,
+    country?: string,
+    program?: string,
+    education?: string,
+    degree?: string,
+    related?: string,
+    professional?: string,
+    workType?: string,
+    workTime?: string,
+    previousExt?: string,
+}
+type Allumni = Array<Allumnus>
 
 
 /**
@@ -63,7 +79,8 @@ interface AuthContextInterface {
 interface UbiqumContextInterface {
     mentors: Mentors,
     students: Students,
-    allUsers: Users
+    allUsers: Users,
+    allumni: Allumni
 }
 
 interface ThemeContextInterface {
@@ -81,6 +98,11 @@ type Overrides = {
 };
 
 interface ComponentNameToClassKey {
+    MUIDataTableToolbar: any,
+    MuiDataTableHead: any,
+    MUIDataTableHeadCell: any,
+    MuiToolbar: any,
+    MUIDataTable: any,
     MUIDataTableToolbarSelect: any,
     MUIDataTableFilter: any,
     MUIDataTableBodyCell: any,

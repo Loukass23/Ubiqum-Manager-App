@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Theme, createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { FormControlLabel, Switch, CardMedia, Grid, Avatar, Container, Typography, Paper } from '@material-ui/core';
+import StudentProfile from './StudentProfile';
 
 
 const styles = (theme: Theme) => createStyles({
@@ -28,6 +29,17 @@ const styles = (theme: Theme) => createStyles({
     },
     responsiveFieldSide: {
         width: '100%',
+        marginTop: 0,
+        marginBottom: 0,
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            marginLeft: 0,
+            marginRight: 0
+        }
+    },
+    about: {
+        justifyContent: 'center',
+        width: '80%',
         marginTop: 0,
         marginBottom: 0,
         [theme.breakpoints.down('xs')]: {
@@ -80,9 +92,14 @@ const styles = (theme: Theme) => createStyles({
         },
 
     },
+    container: {
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+    }
 
 
 })
+
 
 interface Props extends WithStyles<typeof styles> {
     classes: any,
@@ -104,8 +121,7 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
     // };
 
     console.log('user :', user);
-    const { name, surname, email, avatar, program, cohort, city, id, about, startDate } = user
-
+    const { name, surname, email, avatar, program, city, id, about, startDate } = user
 
 
     const initials: string = name.charAt(0) + surname.charAt(0)
@@ -113,7 +129,7 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
     const [editMode, setEditMode] = useState<boolean>(false)
 
     const renderEditProfile = (
-        <React.Fragment >
+        <Grid container spacing={4} className={classes.container} >
 
             <Grid item xs={12} className={classes.avatar}>
                 {avatar ?
@@ -167,6 +183,20 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                     variant="filled"
                 />
 
+            </Grid>
+            <Grid item xs={12}  >
+                <TextField
+                    color="secondary"
+                    // onChange={handleChange('text')}
+                    id="filled-multiline-static"
+                    label="About Me"
+                    multiline
+                    rows="10"
+                    defaultValue={about}
+                    className={classes.responsiveFieldSide}
+                    margin="normal"
+                    variant="filled"
+                />
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
@@ -224,24 +254,11 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                 />
 
             </Grid>
-            <Grid item xs={12} >
-                <TextField
-                    color="secondary"
-                    // onChange={handleChange('text')}
-                    id="filled-multiline-static"
-                    label="About Me"
-                    multiline
-                    rows="10"
-                    defaultValue={about}
-                    className={classes.responsiveFieldSide}
-                    margin="normal"
-                    variant="filled"
-                />
-            </Grid>
-        </React.Fragment>
+
+        </Grid>
     )
     const renderProfile = (
-        <React.Fragment>
+        <Grid container spacing={4} >
 
             <Grid item xs={12} className={classes.avatar}>
                 {avatar ?
@@ -263,16 +280,24 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                 }
             </Grid>
 
+
             <Grid item xs={12} >
                 <Typography className={classes.responsiveFieldSide} color="primary" component="h3" variant="h3">
                     {name} {surname}
                 </Typography>
+                <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center' }} >
+
+                    <Typography className={classes.about} color="secondary" component="h6" variant="h6">
+                        {about}
+                    </Typography>
+
+                </Grid>
 
 
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
-                    {id}
+                    {`ID:  ${id}`}
                 </Typography>
 
             </Grid>
@@ -280,7 +305,6 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                 <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
                     {email}
                 </Typography>
-
             </Grid>
             <Grid item xs={12} md={6}>
                 <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
@@ -293,30 +317,11 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                 </Typography>
 
             </Grid>
-            <Grid item xs={12} >
-                <Typography className={classes.responsiveFieldSide} color="secondary" component="h6" variant="h6">
-                    {about}
-                </Typography>
 
-            </Grid>
 
-        </React.Fragment>
+        </Grid >
     )
-    const renderStudent = (
-        <React.Fragment>
-            <Grid item xs={12} md={6}>
-                <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
-                    {startDate}
-                </Typography>
 
-            </Grid>
-            <Grid item xs={12} md={6} >
-                <Typography className={classes.responsiveFieldSide} color="secondary" component="h5" variant="h5">
-                    {cohort}
-                </Typography>
-
-            </Grid>
-        </React.Fragment>)
 
 
     return (
@@ -330,7 +335,6 @@ const UserProfile: React.FC<Props> = ({ user, userType, classes }) => {
                 />
             </Grid>
             {editMode ? renderEditProfile : renderProfile}
-            {userType === 'student' && renderStudent}
         </Grid>
     )
 

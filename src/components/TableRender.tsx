@@ -15,42 +15,6 @@ const styles = (theme: Theme) => createStyles({
 })
 
 
-const extractColumns = (data: Array<Object>) => {
-    const dataItem = data[0]
-
-    const keys = Object.keys(dataItem) as (keyof Object)[]
-    const columns: MUIDataTableColumn[] = keys.map((key) => {
-        console.log(typeof (dataItem[key]));
-        if (typeof (dataItem[key]) !== 'object') {
-
-            const upper = key.replace(/^\w/, c => c.toUpperCase());
-            const label = upper.replace(/([a-z])([A-Z])/g, '$1 $2');
-
-            const col: MUIDataTableColumn = {
-                name: key,
-                label: label,
-                options: {
-                    filter: true,
-                    sort: true,
-                }
-            }
-            return col
-        }
-        else {
-            const col: MUIDataTableColumn = {
-                name: '',
-                label: '',
-                options: {
-                    filter: true,
-                    sort: true,
-                }
-            }
-            return col
-        }
-    })
-        .filter(key => key.name !== '')
-    return columns
-}
 
 const getOptions = (title: string) => {
 
@@ -71,7 +35,7 @@ const getOptions = (title: string) => {
             yAxis: true
         },
         customToolbarSelect: renderCustomToolbar,
-        onRowsDelete: onClick
+        // onRowsDelete: onClick
     };
 }
 const renderCustomToolbar: any = (selectedRows: { data: { index: number; dataIndex: number; }[]; lookup: { [key: number]: boolean; }; },
@@ -82,19 +46,18 @@ const renderCustomToolbar: any = (selectedRows: { data: { index: number; dataInd
         <CustomToolbarSelect selectedRows={selectedRows} displayData={displayData} setSelectedRows={setSelectedRows} />
     )
 
-const onClick = (rowsDeleted: any[]) => {
-    console.log('test ', rowsDeleted);
-    return false
-}
+
 interface Props {
     data: Array<Object>,
     classes: any,
-    title: string
+    title: string,
+    columns: MUIDataTableColumnDef[]
 
 }
-const TableRender: React.FC<Props> = ({ data, classes, title }) => {
+const TableRender: React.FC<Props> = ({ data, classes, title, columns }) => {
     const option: MUIDataTableOptions = getOptions(title)
-    const columns: MUIDataTableColumnDef[] = extractColumns(data)
+    // const columns: MUIDataTableColumnDef[] = extractColumns(data)
+    // const columns: MUIDataTableColumnDef[] = extractAMentorColumns()
 
     // function(rowsDeleted: object(lookup: { [dataIndex]: boolean }, data: arrayOfObjects: { index: number, dataIndex: number })) => void OR false
 

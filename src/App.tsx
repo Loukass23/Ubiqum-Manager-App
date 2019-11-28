@@ -15,10 +15,12 @@ import SignIn from './layout/SignIn';
 import SpinningLogo from './components/SpinningLogo';
 import UserProfile from './components/UserProfile';
 import Profile from './screens/Profile';
+import Ressources from './screens/Ressources';
+import Allumni from './screens/Allumni';
 
 
 
-
+const RenderStaffOnly: React.FC = () => (<SpinningLogo msg="Staff Only!" />)
 const RenderWebsite: React.FC = () => {
   const {
     theme,
@@ -33,18 +35,21 @@ const RenderWebsite: React.FC = () => {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/settings' component={Settings} />
-        <Route path="/profile/:id" exact component={Profile} />
+
 
         {isAuthenticated ?
           <React.Fragment>
-
+            <Route path="/profile/:id" exact component={Profile} />
             <Route path="/appointments" exact component={Appointments} />
+            <Route path="/ressources" exact component={Ressources} />
+            <Route path="/allumni" exact component={Allumni} />
 
             {userType !== 'student' ?
               <UbiqumContextProvider>
                 <Route path="/students" exact component={Students} />
               </UbiqumContextProvider> :
-              <SpinningLogo msg="Staff Only!" />
+              <Route path="/students" exact component={RenderStaffOnly} />
+
             }
 
 

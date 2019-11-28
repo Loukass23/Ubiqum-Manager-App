@@ -10,12 +10,12 @@ const initUserMentor: Mentor = {
     program: 'Full-Stack',
     city: 'Berlin',
     startDate: "5/6/2019",
-    cohort: "NA",
+    // cohort: "NA",
     calendly: 'https://calendly.com/lucas-ubiqum/berlin',
     about: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus odit rerum accusamus ducimus, earum quam perspiciatis exercitationem doloremque pariatur nobis! Modi, eos facilis. Suscipit vero quam hic reprehenderit repellendus laborum.'
 }
 const initUserStudent: Student = {
-    id: 'BE-JA-LU-11/2018',
+    id: 'BE-JA-LU-11-2018',
     name: 'Lucas',
     surname: 'DPS',
     email: 'lucas@ubiqum.com',

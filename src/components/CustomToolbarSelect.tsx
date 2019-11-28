@@ -48,8 +48,11 @@ const CustomToolbarSelect: React.FC<Props> = ({ classes, selectedRows, displayDa
 
     const { data } = selectedRows
 
+
     const getID = (index: number) => {
-        return displayData[index].data[8]
+        console.log('data :', displayData[index]);
+        const idCol = displayData[index].data.length - 1
+        return displayData[index].data[idCol]
     }
 
     return (

@@ -24,6 +24,7 @@ import SignIn from './SignIn';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthToolbar from './AuthToolbar';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 const drawerWidth = 300;
 
@@ -81,7 +82,7 @@ const NavBar: React.FC<Props> = ({ classes }) => {
     };
 
     const drawer = (
-        <div  >
+        <div onClick={handleDrawerToggle} >
             <ListItem button component={Link} to="/">
                 <ListItemIcon>
                     <HomeIcon color="primary" />
@@ -91,7 +92,7 @@ const NavBar: React.FC<Props> = ({ classes }) => {
             <Divider />
 
             <List>
-                <ListItem button >
+                <ListItem button component={Link} to="/ressources" >
                     <ListItemIcon>
                         <DescriptionIcon />
                     </ListItemIcon>
@@ -115,6 +116,12 @@ const NavBar: React.FC<Props> = ({ classes }) => {
                     </ListItemIcon>
                     <ListItemText primary="Students" />
                 </ListItem>}
+                <ListItem button component={Link} to="/allumni"  >
+                    <ListItemIcon>
+                        <SupervisedUserCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Allumni" />
+                </ListItem>
                 <ListItem button component={Link} to="/settings"  >
                     <ListItemIcon>
                         <SettingsIcon />
