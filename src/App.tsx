@@ -17,6 +17,7 @@ import UserProfile from './components/UserProfile';
 import Profile from './screens/Profile';
 import Ressources from './screens/Ressources';
 import Allumni from './screens/Allumni';
+import Dashboard from './screens/Dashboard';
 
 
 
@@ -34,6 +35,8 @@ const RenderWebsite: React.FC = () => {
       <NavBar />
       <Switch>
         <Route exact path='/' component={Landing} />
+        <Route exact path='/dashboard' component={Dashboard} />
+
         <Route exact path='/settings' component={Settings} />
 
 

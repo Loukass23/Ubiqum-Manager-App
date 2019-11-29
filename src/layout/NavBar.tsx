@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AuthToolbar from './AuthToolbar';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const drawerWidth = 300;
 
@@ -92,12 +93,19 @@ const NavBar: React.FC<Props> = ({ classes }) => {
             <Divider />
 
             <List>
+                <ListItem button component={Link} to="/dashboard" >
+                    <ListItemIcon>
+                        <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                </ListItem>
                 <ListItem button component={Link} to="/ressources" >
                     <ListItemIcon>
                         <DescriptionIcon />
                     </ListItemIcon>
                     <ListItemText primary="Ressources" />
                 </ListItem>
+
                 <ListItem button >
                     <ListItemIcon>
                         <CalendarTodayIcon />
