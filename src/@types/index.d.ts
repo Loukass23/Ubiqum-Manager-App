@@ -20,6 +20,12 @@ interface Student {
 
 }
 
+interface Cohort {
+    students: Students,
+    startDate: Date,
+    program: string,
+    number: number,
+}
 interface Progress {
     module: any,
     sprint: any,
@@ -204,7 +210,7 @@ interface ComponentNameToClassKey {
 }
 
 
-
+/*
 declare module 'react-vis' {
 
     import {
@@ -1545,5 +1551,5 @@ declare module 'react-vis/es/make-vis-flexible' {
         FlexibleWidthXYPlot,
         FlexibleHeightXYPlot,
     } from 'react-vis';
-}
+}*/
 
