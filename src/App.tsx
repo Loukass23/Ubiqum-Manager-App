@@ -36,10 +36,7 @@ const RenderWebsite: React.FC = () => {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/dashboard' component={Dashboard} />
-
         <Route exact path='/settings' component={Settings} />
-
-
         {isAuthenticated ?
           <React.Fragment>
             <Route path="/profile/:id" exact component={Profile} />
