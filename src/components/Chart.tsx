@@ -1,11 +1,40 @@
 import React, { useContext, useState } from 'react';
-import { BarChart, AreaChart, LineData, BarData } from 'react-easy-chart';
+import { BarChart, AreaChart, LineData, BarData, PieChart } from 'react-easy-chart';
 import { Grid, Theme, createStyles, withStyles, Typography } from '@material-ui/core';
 import { GridSize } from '@material-ui/core/Grid';
 import ToolTip from './Tooltip';
 
 
 const ubiqumTotals: { [key: string]: cityObj; } = {
+    All: {
+        total: 134,
+        data: 8,
+        mern: 34,
+        java: 92,
+        sales: [[
+            { x: '1-Jan-15', y: 13 },
+            { x: '1-Feb-15', y: 21 },
+            { x: '1-Mar-15', y: 13 },
+            { x: '1-Apr-15', y: 15 },
+            { x: '1-May-15', y: 5 }
+        ],
+        [
+            { x: '1-Jan-15', y: 24 },
+            { x: '1-Feb-15', y: 15 },
+            { x: '1-Mar-15', y: 33 },
+            { x: '1-Apr-15', y: 25 },
+            { x: '1-May-15', y: 17 }
+        ],
+        [
+            { x: '1-Jan-15', y: 23 },
+            { x: '1-Feb-15', y: 23 },
+            { x: '1-Mar-15', y: 23 },
+            { x: '1-Apr-15', y: 14 },
+            { x: '1-May-15', y: 15 }
+        ],
+
+        ]
+    },
     Berlin: {
         total: 29,
         data: 8,
@@ -32,13 +61,6 @@ const ubiqumTotals: { [key: string]: cityObj; } = {
             { x: '1-Apr-15', y: 4 },
             { x: '1-May-15', y: 5 }
         ],
-        [
-            { x: '1-Jan-15', y: 0 },
-            { x: '1-Feb-15', y: 0 },
-            { x: '1-Mar-15', y: 3 },
-            { x: '1-Apr-15', y: 45 },
-            { x: '1-May-15', y: 1 }
-        ]
         ]
     },
     Barcelona: {
@@ -67,13 +89,7 @@ const ubiqumTotals: { [key: string]: cityObj; } = {
             { x: '1-Apr-15', y: 45 },
             { x: '1-May-15', y: 15 }
         ],
-        [
-            { x: '1-Jan-15', y: 20 },
-            { x: '1-Feb-15', y: 0 },
-            { x: '1-Mar-15', y: 3 },
-            { x: '1-Apr-15', y: 5 },
-            { x: '1-May-15', y: 5 }
-        ]
+
         ]
     },
     Madrid: {
@@ -196,6 +212,7 @@ interface UbiqumTotals {
     Madrid: Object,
     Amsterdam: Object,
     Lisbon: Object,
+    All: Object,
 }
 type city = keyof UbiqumTotals
 const styles = (theme: Theme) => createStyles({
@@ -212,7 +229,7 @@ const Chart: React.FC<Props> = ({ classes }) => {
     console.log('innerWidth :', innerWidth);
     const chartWidth = innerWidth / 2
     const chartHeignt = innerHeight / 2
-    const [showCity, setShowCity] = useState(false)
+    const [showSales, setshowSales] = useState(false)
     const [tooltip, setTooltip] = useState({
         showToolTip: false,
         windowWidth: innerWidth - 100,
@@ -223,11 +240,11 @@ const Chart: React.FC<Props> = ({ classes }) => {
         y: 0
     })
 
-    const [city, setCity] = useState<city>('Berlin')
+    const [city, setCity] = useState<city>('All')
 
     const handleChartClick = (cityObj: any) => {
 
-        setShowCity(true)
+        setshowSales(true)
         setCity(cityObj.x)
         console.log('city', city)
 
@@ -238,8 +255,10 @@ const Chart: React.FC<Props> = ({ classes }) => {
         setTooltip({
             ...tooltip,
             showToolTip: true,
-            top: `${e.screenY + 10}px`,
-            left: `${e.screenX - 10}px`,
+            top: `${e.screenY}px`,
+            left: `${e.screenX}px`,
+            // top: `${e.screenY + 10}px`,
+            // left: `${e.screenX - 10}px`,
             y: d.y,
             x: d.x
         });
@@ -266,7 +285,8 @@ const Chart: React.FC<Props> = ({ classes }) => {
                     top={tooltip.top}
                     left={tooltip.left}
                 >
-                    The x value is {tooltip.x} and the y value is {tooltip.y}
+                    {tooltip.y} students
+                    {/* The x value is {tooltip.x} and the y value is {tooltip.y} */}
                 </ToolTip>
             );
         }
@@ -277,6 +297,13 @@ const Chart: React.FC<Props> = ({ classes }) => {
         <div>
             <Grid container>
                 <Grid item xs={12}>
+
+                    <Typography color="secondary" component="h5" variant="h5">
+                        {city}
+                    </Typography>
+                </Grid>
+
+                <Grid item xs={12} md={9}>
                     <BarChart
                         axisLabels={{ x: 'Cities', y: 'Students' }}
                         axes
@@ -291,7 +318,8 @@ const Chart: React.FC<Props> = ({ classes }) => {
                         xType={'text'}
                         clickHandler={(c) => handleChartClick(c)}
                         data={[
-                            { x: 'Berlin', y: ubiqumTotals.Berlin.total, },
+                            { x: 'All', y: ubiqumTotals.All.total },
+                            { x: 'Berlin', y: ubiqumTotals.Berlin.total },
                             { x: 'Barcelona', y: ubiqumTotals.Barcelona.total },
                             { x: 'Amsterdam', y: ubiqumTotals.Amsterdam.total },
                             { x: 'Lisbon', y: ubiqumTotals.Lisbon.total },
@@ -299,16 +327,37 @@ const Chart: React.FC<Props> = ({ classes }) => {
                         ]}
                     />
                 </Grid>
+                <Grid item xs={12} md={2}>
 
-                {showCity &&
+                    <BarChart
+                        axisLabels={{ x: 'Cities', y: 'Students' }}
+                        axes
+                        colorBars
+                        height={chartHeignt}
+                        width={chartWidth / 3}
+                        barWidth={2}
+                        yTickNumber={3}
+                        xType={'text'}
+                        mouseOverHandler={mouseOverHandler}
+                        mouseOutHandler={mouseOutHandler}
+                        // mouseMoveHandler={mouseMoveHandler}
+                        // innerHoleSize={10}
+
+                        // labels
+                        clickHandler={(f) => console.log(f)}
+                        data={[
+                            { x: 'DATA', y: ubiqumTotals[city].data, color: '#CCCDB5' },
+                            { x: 'MERN', y: ubiqumTotals[city].mern, color: '#EEC97D' },
+                            { x: 'JAVA', y: ubiqumTotals[city].java, color: '#F9F29C' },
+                        ]}
+                    />
+                </Grid>
+                {showSales &&
                     <Grid container>
+
+
                         <Grid item xs={12}>
 
-                            <Typography color="secondary" component="h5" variant="h5">
-                                {city}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
                             <AreaChart
                                 xType={'time'}
                                 axes
@@ -322,7 +371,7 @@ const Chart: React.FC<Props> = ({ classes }) => {
                                 // tickTimeDisplayFormat={'%d %m'}
                                 interpolate={'cardinal'}
                                 height={chartHeignt / 2}
-                                width={chartWidth}
+                                width={innerWidth / 1.5}
                                 lineColors={['black', 'purple']}
                                 data={ubiqumTotals[city].sales}
                             // data={[
@@ -341,36 +390,17 @@ const Chart: React.FC<Props> = ({ classes }) => {
                             //     ]
                             // ]}
                             />
-
+                            <Typography color="secondary" component="h6" variant="h6">
+                                Sales Timeline
+                        </Typography>
 
                         </Grid>
-                        <Grid item xs={6}>
 
-                            <BarChart
-                                axisLabels={{ x: 'Cities', y: 'Students' }}
-                                axes
-                                colorBars
-                                height={chartHeignt / 2}
-                                width={chartWidth / 2}
-                                barWidth={5}
-                                yTickNumber={3}
-                                xType={'text'}
-                                mouseOverHandler={mouseOverHandler}
-                                mouseOutHandler={mouseOutHandler}
-                                // mouseMoveHandler={mouseMoveHandler}
-                                // innerHoleSize={10}
-
-                                // labels
-                                clickHandler={(f) => console.log(f)}
-                                data={[
-                                    { x: 'DATA', y: ubiqumTotals[city].data, },
-                                    { x: 'MERN', y: ubiqumTotals[city].mern },
-                                    { x: 'JAVA', y: ubiqumTotals[city].java },
-                                ]}
-                            />
-                        </Grid>
 
                     </Grid>}
+
+
+
             </Grid>
             {createTooltip()}
         </div >

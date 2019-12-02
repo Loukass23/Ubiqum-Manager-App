@@ -9,7 +9,7 @@ import { Grid, Paper, Button } from '@material-ui/core';
 import { minHeight, breakpoints } from '@material-ui/system';
 import { AuthContext } from '../context/AuthContext';
 import UserProfile from '../components/UserProfile';
-import { confluenceContentOffine } from '../offlineData/confluenceContentOffline'
+import { confluenceContentOffine } from '../offlineDatas/confluenceContentOffline'
 
 
 const styles = (theme: Theme) => createStyles({

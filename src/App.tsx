@@ -18,6 +18,7 @@ import Profile from './screens/Profile';
 import Ressources from './screens/Ressources';
 import Allumni from './screens/Allumni';
 import Dashboard from './screens/Dashboard';
+import Leads from './screens/Leads';
 
 
 
@@ -43,6 +44,7 @@ const RenderWebsite: React.FC = () => {
             <Route path="/appointments" exact component={Appointments} />
             <Route path="/ressources" exact component={Ressources} />
             <Route path="/allumni" exact component={Allumni} />
+            <Route path="/leads" exact component={Leads} />
 
             {userType !== 'student' ?
               <UbiqumContextProvider>

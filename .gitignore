@@ -25,3 +25,10 @@ yarn-error.log*
 
 #deploy
 /dist
+src/apiGoogleconfig.json
+src/offlineData/allumniOffline.ts
+src/offlineData/leadsOffline.ts
+src/offlineDatas/allumniOffline.ts
+src/offlineDatas/leadsOffline.ts
+src/offlineDatas/studentsOffline.ts
+src/offlineDatas/confluenceContentOffline.ts

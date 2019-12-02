@@ -1,11 +1,13 @@
 import React, { useState, createContext } from 'react'
-import { studentsOffline } from '../offlineData/studentsOffline'
-import { allumniOffline } from '../offlineData/allumniOffline'
+import { studentsOffline } from '../offlineDatas/studentsOffline'
+import { allumniOffline } from '../offlineDatas/allumniOffline'
+import { offLineLeads } from '../offlineDatas/leadsOffline'
 
 
 
 const initStudents: Students = studentsOffline
 const initAllumni: Allumni = allumniOffline
+const initLeads: any = offLineLeads
 
 
 const initMentors: Mentors = [
@@ -44,7 +46,8 @@ const initUbiqum: UbiqumContextInterface = {
     mentors: initMentors,
     students: initStudents,
     allUsers: initAllUsers,
-    allumni: initAllumni
+    allumni: initAllumni,
+    leads: initLeads
 }
 export const UbiqumContext = createContext<UbiqumContextInterface>(initUbiqum);
 

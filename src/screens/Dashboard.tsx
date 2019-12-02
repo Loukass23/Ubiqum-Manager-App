@@ -24,6 +24,7 @@ const styles = (theme: Theme) => createStyles({
 
     },
     paper: {
+        marginTop: 0,
         minHeight: '100vh',
         paddingBottom: theme.spacing(3),
         [theme.breakpoints.down("md")]: {
@@ -61,9 +62,7 @@ const Dashboard: React.FC<Props> = ({ classes }) => {
                 <Typography className={classes.title} color="primary" component="h1" variant="h3">
                     Dashboard
         </Typography>
-                <Typography className={classes.title} color="secondary" component="h5" variant="h5">
-                    Total Students
-        </Typography>
+
                 <div className={classes.chart}>
                     <Chart />
                 </div>

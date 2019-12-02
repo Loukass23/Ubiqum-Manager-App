@@ -26,6 +26,7 @@ import { AuthContext } from '../context/AuthContext';
 import AuthToolbar from './AuthToolbar';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 const drawerWidth = 300;
 
@@ -129,6 +130,12 @@ const NavBar: React.FC<Props> = ({ classes }) => {
                         <SupervisedUserCircleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Allumni" />
+                </ListItem>
+                <ListItem button component={Link} to="/leads"  >
+                    <ListItemIcon>
+                        <TrendingUpIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Leads" />
                 </ListItem>
                 <ListItem button component={Link} to="/settings"  >
                     <ListItemIcon>

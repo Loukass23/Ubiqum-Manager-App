@@ -86,7 +86,8 @@ interface UbiqumContextInterface {
     mentors: Mentors,
     students: Students,
     allUsers: Users,
-    allumni: Allumni
+    allumni: Allumni,
+    leads: any
 }
 
 interface ThemeContextInterface {
